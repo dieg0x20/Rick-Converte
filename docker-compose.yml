@@ -1,0 +1,51 @@
+name: file-converter
+services:
+    file-converter:
+        build:
+            context: /home/k4tsu/container/file-converter
+            dockerfile: Dockerfile
+        cpu_shares: 50
+        command: []
+        container_name: file-converter
+        deploy:
+            resources:
+                limits:
+                    memory: "3945791488"
+        environment:
+            TZ: America/Sao_Paulo
+        hostname: file-converter
+        image: file-converter:latest
+        labels:
+            icon: https://img.icons8.com/?size=512&id=udMvpkRHbzzS&format=png
+        network_mode: bridge
+        ports:
+            - mode: ingress
+              target: 5000
+              published: "5000"
+              protocol: tcp
+        restart: unless-stopped
+        volumes:
+            - type: bind
+              source: /home/k4tsu/container/file-converter/uploads
+              target: /app/uploads
+              bind:
+                create_host_path: true
+            - type: bind
+              source: /home/k4tsu/container/file-converter/converted
+              target: /app/converted
+              bind:
+                create_host_path: true
+networks:
+    default:
+        name: file-converter_default
+x-casaos:
+    author: self
+    category: self
+    hostname: ""
+    icon: https://img.icons8.com/?size=512&id=udMvpkRHbzzS&format=png
+    index: /
+    is_uncontrolled: false
+    port_map: "5000"
+    scheme: http
+    title:
+        custom: Rick Converter
