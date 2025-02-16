@@ -2,7 +2,7 @@ name: file-converter
 services:
     file-converter:
         build:
-            context: /home/k4tsu/container/file-converter
+            context: /home/k4tsu/Rick-Converte
             dockerfile: Dockerfile
         cpu_shares: 50
         command: []
@@ -26,12 +26,12 @@ services:
         restart: unless-stopped
         volumes:
             - type: bind
-              source: /home/k4tsu/container/file-converter/uploads
+              source: /home/k4tsu/Rick-Converte/uploads
               target: /app/uploads
               bind:
                 create_host_path: true
             - type: bind
-              source: /home/k4tsu/container/file-converter/converted
+              source: /home/k4tsu/Rick-Converte/converted
               target: /app/converted
               bind:
                 create_host_path: true
